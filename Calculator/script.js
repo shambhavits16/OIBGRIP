@@ -1,19 +1,37 @@
-let string = "";
-let buttons = document.querySelectorAll('.Button');
-Array.from(buttons).forEach((Button)=>{
-    Button.addEventListener('click',(e)=>{
-        if(e.target.innerHTML == 'ENTER'){
-            string = eval(string);
-            document.querySelector('input').value = string;
-        }
-        else if(e.target.innerHTML == 'clear'){
-            string = "";
-            document.querySelector('input').value = string;
+function storedata(v){
+    var txtInp = document.getElementById('txtInp');
+    var oldInp = txtInp.value;
+    var l = oldInp.length;
+    var lastch = oldInp[l-1];
+
+    var opSym = ["+","-","*","/",".","ans","±","√","%"];
+    if(opSym.includes(v)){
+        if(opSym.includes(lastch)){
+            var revlast = oldInp.slice(0,-1);
+            txtInp.value = revlast+v;
         }
         else{
-        console.log(e.target)
-        string = string + e.target.innerHTML;
-        document.querySelector('input').value = string;
+            txtInp.value = oldInp+v;
         }
-    })
-})
+    }
+    else{
+        txtInp.value = oldInp+v;
+    }
+}
+
+function deldata(){
+    var txtInp = document.getElementById('txtInp');
+    var oldInp = txtInp.value;
+    oldInp = oldInp.substring(0,oldInp.length-1);
+    txtInp.value=oldInp;
+}
+
+function caldata(){
+    var txtInp = document.getElementById('txtInp');
+    var oldInp = eval(txtInp.value);
+    txtInp.value = oldInp;
+}
+
+function clsdata(){
+    document.getElementById('txtInp').value=''; 
+}

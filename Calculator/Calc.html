@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,49 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task1 Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="avail.css">
 </head>
 <body>
     <h1 class="text-center">Calculator</h1>
-    <div class="Container flex flex-col item-center bg-blue mx-auto">
-        <div class="Row">
-            <input class="input" type="text">
-        </div>
-        <div class="Row">
-            <button class="Button">(</button>
-            <button class="Button">)</button>
-            <button class="Button">ans</button>
-            <button class="Button">del</button>
-            <button class="Button">clear</button>
-        </div>
-        <div class="Row">
-            <button class="spButton">7</button>
-            <button class="spButton">8</button>
-            <button class="spButton">9</button>
-            <button class="Button">%</button>
-            <button class="Button">√</button>
-        </div>
-        <div class="Row">
-            <button class="spButton">4</button>
-            <button class="spButton">5</button>
-            <button class="spButton">6</button>
-            <button class="Button">*</button>
-            <button class="Button">/</button>
-        </div>
-        <div class="Row">
-            <button class="spButton">1</button>
-            <button class="spButton">2</button>
-            <button class="spButton">3</button>
-            <button class="Button">+</button>
-            <button class="Button">-</button>
-        </div>
-        <div class="Row">
-            <button class="Button">.</button>
-            <button class="spButton">0</button>
-            <button class="Button">±</button>
-            <button class="button">ENTER</button>
-        </div>
-    </div>
+
+    <table class="table">
+        <tr>
+            <td colspan="5"><input type="text" id="txtInp" /></td>
+        </tr>
+        <tr>
+            <td><button onclick="storedata('(')">(</button></td>
+            <td><button onclick="storedata(')')">)</button></td>
+            <td><button onclick="storedata('ans')">ans</button></td>
+            <td><button onclick="deldata()">del</button></td>
+            <td><button onclick="clsdata()">clear</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storedata('7')">7</button></td>
+            <td><button onclick="storedata('8')">8</button></td>
+            <td><button onclick="storedata('9')">9</button></td>
+            <td><button onclick="storedata('%')">%</button></td>
+            <td><button onclick="storedata('√')">√</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storedata('4')">4</button></td>
+            <td><button onclick="storedata('5')">5</button></td>
+            <td><button onclick="storedata('6')">6</button></td>
+            <td><button onclick="storedata('*')">*</button></td>
+            <td><button onclick="storedata('/')">/</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storedata('1')">1</button></td>
+            <td><button onclick="storedata('2')">2</button></td>
+            <td><button onclick="storedata('3')">3</button></td>
+            <td><button onclick="storedata('+')">+</button></td>
+            <td><button onclick="storedata('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storedata('.')">.</button></td>
+            <td><button onclick="storedata('0')">0</button></td>
+            <td><button onclick="storedata('±')">±</button></td>
+            <td colspan="2"><button onclick="caldata()" id="enter">ENTER</button></td>
+        </tr>
+    </table>
     <script src="script.js"></script>
 </body>
 </html>
