@@ -1,37 +1,71 @@
-function storedata(v){
-    var txtInp = document.getElementById('txtInp');
-    var oldInp = txtInp.value;
-    var l = oldInp.length;
-    var lastch = oldInp[l-1];
-
-    var opSym = ["+","-","*","/",".","ans","±","√","%"];
-    if(opSym.includes(v)){
-        if(opSym.includes(lastch)){
-            var revlast = oldInp.slice(0,-1);
-            txtInp.value = revlast+v;
-        }
-        else{
-            txtInp.value = oldInp+v;
-        }
+let input = document.getElementById("input");
+let output = document.getElementById("output");
+const symbols = ["+","-","x","÷","(",")","%"]
+var answer = "0";
+var string = ""
+function storedata(data){
+    if(symbols.includes(input.innerHTML[input.innerHTML.length-1])   && 
+       input.innerHTML!=""   && 
+       symbols.includes(data)){
+        input.innerHTML = input.innerHTML.substring(0,input.innerHTML.length - 1);
+        input.innerHTML+=data
     }
+    else if (data == "CLEAR"){
+        input.innerHTML = "";
+        output.innerHTML = "";
+        answer = "0";
+    }
+    else if(data == "ENTER"){
+        calculate()
+        
+    }
+    else if(data=="±"){
+        calculate()
+        console.log(answer)
+            if ((parseInt(answer))>0){
+                answer = -1*(parseInt(answer));
+                answer = answer.toString();
+                input.innerHTML = "-"+"("+input.innerHTML+")";
+                
+            }
+            else{
+                answer = -1*(parseInt(answer));
+                answer = answer.toString();
+                
+            }
+            output.innerHTML = answer;
+    }
+    else if (data == "DEL"){
+        input.innerHTML = input.innerHTML.substring(0,input.innerHTML.length - 1);
+    }
+    else if (data == "ANS"){
+        output.innerHTML = answer;
+        input.innerHTML = answer
+    }
+
+
     else{
-        txtInp.value = oldInp+v;
+        input.innerHTML += data;
     }
 }
 
-function deldata(){
-    var txtInp = document.getElementById('txtInp');
-    var oldInp = txtInp.value;
-    oldInp = oldInp.substring(0,oldInp.length-1);
-    txtInp.value=oldInp;
-}
-
-function caldata(){
-    var txtInp = document.getElementById('txtInp');
-    var oldInp = eval(txtInp.value);
-    txtInp.value = oldInp;
-}
-
-function clsdata(){
-    document.getElementById('txtInp').value=''; 
+function calculate(){
+    string = input.innerHTML
+        string = string.replace(/x/g,"*");
+        string = string.replace(/÷/g,"/");
+        string = string.replace(/∞/g,"Infinity");
+        try{
+            if (math.evaluate(`${string}`) == "Infinity"){
+                output.innerHTML = "∞"
+                answer = "∞"
+            }
+            else {
+                output.innerHTML = math.evaluate(`${string}`);
+                answer = math.evaluate(`${string}`);
+            }
+            
+        }
+        catch(e) {
+            input.innerHTML = e.name
+        }
 }
