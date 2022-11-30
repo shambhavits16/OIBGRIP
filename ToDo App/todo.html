@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <title>To Do List App</title>
+    <link rel="stylesheet" href="todo.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="./firebase.js"></script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div class="background-image">
+        <img src="assets\pexels-johannes-plenio-1103970.jpg">
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                TODO
+            </div>
+            <div class="theme">
+                <img src="assets/icon-sun.svg">
+            </div>
+        </div>
+        <div class="new-todo">
+            <div class="check">
+                <!-- <div class="check-mark" style="visibility: hidden ;">
+                </div> -->
+            </div>
+            <div class="new-todo-input">
+                <form onsubmit="addItem(event)">
+                    <input id="todo-input" type="text" placeholder="Create a new todo..." />
+                </form>
+
+            </div>
+        </div>
+        <div class="todo-items-wrapper">
+            <div class="todo-items">
+                <div class="todo-item">
+                    <div class="check">
+                        <div class="check-mark checked"><img src="assets/icon-check.svg"></div>
+                    </div>
+                    <div class="todo-text checked"> hey guys </div>
+                    <div class="delete-data"><img width="20" height="20" src="assets/delete.png"></div>
+                </div>
+            </div>
+            <div class="todo-items-info">
+                <div class="items-left">
+                    - items left
+                </div>
+                <div class="items-statuses">
+                    <span class="all">All</span>
+                    <span class="only-active">Active</span>
+                    <span class="only-completed">Completed</span>
+                </div>
+                <div class="items-clear">
+                    <span class="clear-all">Clear Completed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
