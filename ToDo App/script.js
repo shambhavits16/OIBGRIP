@@ -1,6 +1,6 @@
 let active_items = [];
 let completed_items = [];
-
+var flag = 0;
 
 function getItems() {
     db.collection("todo-items").onSnapshot((snapshot) => {
@@ -12,6 +12,9 @@ function getItems() {
             })
         })
         console.log(items)
+
+        active_items = [];
+        completed_items = [];
 
         items.forEach((x) => {
             if (x.status == "active") {
@@ -29,6 +32,7 @@ function getItems() {
         let all = document.querySelector(".all")
         all.addEventListener("click", (e) => {
             generateItems(items);
+            flag = 0;
         })
 
         let active_only = document.querySelector(".only-active")
@@ -39,9 +43,17 @@ function getItems() {
         let completed_only = document.querySelector(".only-completed")
         completed_only.addEventListener("click", (e) => {
             generateItems(completed_items);
+            flag = 1;
         })
 
-
+        x = document.querySelector(".items-left");
+        len = items.length
+        console.log(items,len)
+        if (!len) {
+            x.innerHTML = "0 items"
+        } else {
+            x.innerHTML = len.toString() + " items"
+        }
 
     })
 }
@@ -74,20 +86,14 @@ function generateItems(items) {
             // console.log(id1);
             db.collection('todo-items').doc(id1).delete();
             console.log("Data Deleted Successfully")
-
+            getItems();
         })
 
         let todoText = document.createElement("div");
         todoText.classList.add("todo-text");
         todoText.innerText = item.text;
 
-        x = document.querySelector(".items-left");
-        len = items.length
-        if (!len) {
-            x.innerHTML = "0 items left"
-        } else {
-            x.innerHTML = len.toString() + " items left"
-        }
+        
 
         let clear_completed = document.querySelector(".clear-all")
         clear_completed.addEventListener("click", (e) => {
@@ -99,11 +105,12 @@ function generateItems(items) {
                 // console.log(id1);
 
             console.log("All completed Data Deleted Successfully")
+            getItems();
 
         })
 
 
-        if (item.status == "completed") {
+        if (item.status == "completed" && flag == 0) {
             checkMark.classList.add("checked");
             todoText.classList.add("checked");
         }
